@@ -33,7 +33,29 @@ const getPokemon = async (id) => {
 }
 
 const createPokemonCard = (pokemon) => {
-    
+	const pokemonElement = document.createElement('div');
+	pokemonElement.classList.add('pokemon');
+
+	const type = pokemon.types[0].type.name;
+	const color = colors[type];
+
+	pokemonElement.style.backgroundColor = color;
+	const pokemonId = pokemon.id;
+	const pokemonName = pokemon.name;
+	const typeName = pokemon.types[0].type.name;
+	pokemonElement.innerHTML = `
+    <div class="img-container">
+		<img src=" http://pokeapi.co/media/sprites/pokemon/${pokemonIndex}.png" alt="${pokemonName}">
+		
+    </div>
+    <div class="info">
+        <span class="number">${pokemonId.toString().padStart(3, '0')}</span>
+        <h3 class="name">${pokemonName}</h3>
+        <small class="type">Type: <span>${typeName}</span></small>
+    </div>
+    `;
+
+	poke_container.appendChild(pokemonElement);
 }
 
 fetchPokemons()
