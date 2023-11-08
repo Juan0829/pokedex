@@ -1,8 +1,8 @@
-const poke_container = document.getElementById('poke-container')
-const pokemon_count = 150
+const poke_container = document.getElementById('poke-container');
+const pokemon_count = 150;
 const colors = {
-    fire: '#FDDFDF',
-    grass: '#DEFDE0',
+	fire: '#FDDFDF',
+	grass: '#DEFDE0',
 	electric: '#FCF7DE',
 	water: '#DEF3FD',
 	ground: '#f4e7da',
@@ -15,22 +15,22 @@ const colors = {
 	flying: '#F5F5F5',
 	fighting: '#E6E0D4',
 	normal: '#F5F5F5'
-}
+};
 
-const main_types = Object.keys(colors)
+const main_types = Object.keys(colors);
 
 const fetchPokemons = async () => {
-    for(let i = 1; i <= pokemon_count; i++) {
-        await getPokemon(i)
-    }
-}
+	for (let i = 1; i <= pokemon_count; i++) {
+		await getPokemon(i);
+	}
+};
 
 const getPokemon = async (id) => {
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`
-    const res = await fetch(url)
-    const data = await res.json()
-    createPokemonCard(data)
-}
+	const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+	const res = await fetch(url);
+	const data = await res.json();
+	createPokemonCard(data);
+};
 
 const createPokemonCard = (pokemon) => {
 	const pokemonElement = document.createElement('div');
@@ -40,12 +40,14 @@ const createPokemonCard = (pokemon) => {
 	const color = colors[type];
 
 	pokemonElement.style.backgroundColor = color;
+
 	const pokemonId = pokemon.id;
 	const pokemonName = pokemon.name;
 	const typeName = pokemon.types[0].type.name;
+
 	pokemonElement.innerHTML = `
     <div class="img-container">
-		<img src=" http://pokeapi.co/media/sprites/pokemon/${pokemonIndex}.png" alt="${pokemonName}">
+		<img src=" https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png" alt="${pokemonName}">
 		
     </div>
     <div class="info">
@@ -55,7 +57,7 @@ const createPokemonCard = (pokemon) => {
     </div>
     `;
 
-	poke_container.appendChild(pokemonElement);
-}
+poke_container.appendChild(pokemonElement);
+};
 
-fetchPokemons()
+fetchPokemons();
